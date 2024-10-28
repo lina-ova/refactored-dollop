@@ -15,10 +15,11 @@ app.get('/', (request, response) => {
 })
 
 app.get('/info', (request, response) => {
-    response.send(`<div>
-        <p>Phonebook has ${persons.length} people</p>
+    Person.find({}).then(result => response.send(`<div>
+        <p>Phonebook has ${result.length} people</p>
         <p>${Date(Date.now()).toString()}</p>
-        </div>`)
+        </div>`))
+
 })
 
 app.get('/api/persons', (request, response) => {
